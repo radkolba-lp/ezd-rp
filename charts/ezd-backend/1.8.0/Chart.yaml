@@ -1,9 +1,9 @@
 annotations:
-  catalog.cattle.io/display-name: EZD RP Backend - Apps (2/2)
+  catalog.cattle.io/display-name: EZD RP Backend (2/2) - Apps
   catalog.cattle.io/os: linux
   catalog.cattle.io/release-name: ezd-backend
 apiVersion: v2
-appVersion: 1.2025.21.7
+appVersion: 1.2025.21.11
 description: Services necessary to run EZD RP app. Install many times on kubernetes. EZD RP / LP Backend
 home: https://linuxpolska.com
 icon: https://linuxpolska.com/logo/LinuxPolska-icon.png
@@ -17,4 +17,4 @@ name: ezd-backend
 sources:
 - https://github.com/linuxpolska/ezd-rp.git
 type: application
-version: 1.7.0
+version: 1.8.0

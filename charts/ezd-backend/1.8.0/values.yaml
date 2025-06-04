@@ -101,7 +101,7 @@ postgresqlConfig:
     walStorage:
       size: 2Gi
       resizeInUseVolumes: True
-    imageName: docker.io/sourcemation/cnpg-17:17.4.1
+    imageName: docker.io/sourcemation/cnpg-17:17.5.1
     postgresql:
       parameters:
         pg_stat_statements.max: "10000"
@@ -177,7 +177,7 @@ redisConfig:
     password: ""
   customConfig:
     kubernetesConfig:
-      image: docker.io/sourcemation/redis:8.0.0
+      image: docker.io/sourcemation/redis:8.0.1
       imagePullPolicy: Always
       imagePullSecrets:
         - name: credentials-registry-app
@@ -200,6 +200,6 @@ redisConfig:
              storage: 1Gi
     redisExporter:
       enabled: false
-      image: docker.io/sourcemation/redis-exporter:1.71.0
+      image: docker.io/sourcemation/redis-exporter:1.72.1
     securityContext:
       runAsUser: 0

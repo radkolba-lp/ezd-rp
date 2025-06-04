@@ -23,7 +23,7 @@ rabbitmq-operator:
     image:
       registry: ""
       repository: docker.io/bitnami/rabbitmq-cluster-operator
-      tag: 2.13.0
+      tag: 2.14.0
       pullPolicy: Always
     resources:
       limits:
@@ -42,7 +42,7 @@ rabbitmq-operator:
 cloudnative-pg:
   image:
     repository: ghcr.io/cloudnative-pg/cloudnative-pg
-    tag: ""
+    tag: "1.26.0"
     pullPolicy: Always
   resources: {}
   tolerations: []
@@ -53,7 +53,7 @@ cloudnative-pg:
 redis-operator:
   redisOperator:
     imageName: ghcr.io/ot-container-kit/redis-operator/redis-operator
-    imageTag: v0.20.1
+    imageTag: v0.20.2
     pullPolicy: Always
     serviceAccountName: "redis-operator"
     resources:

@@ -1,6 +1,5 @@
 categories:
 - database
-namespace: default
 questions:
 - variable: global.postgresql.deploy
   label: Deploy Postgresql

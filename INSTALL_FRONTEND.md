@@ -55,32 +55,27 @@
 > Installation of the EZD RP frontend requires a TLS certificate. Example creation is described [here](README_TLS.md)
 
 ```bash
-CERTIFICATE_NAME=example.domain.name.crt
-CERTIFICATE_KEY=example.domain.name.key
 RELEASE_NAMESPACE=example
 CHART_VERSION=1.8.0
 
-cat <<EOF > /tmp/ezd-vars.sh
-# Desired namespace where ezd-rp will be installed
-export K8S_NAMESPACE=ezd-rp
 # Set the name of the domain where ezdrp will exist
-export APP_DOMAIN=
+APP_DOMAIN=example.domain.name
+# Set the TLS certificate filename which will be pulled into tls secret
+CERTIFICATE_NAME=$APP_DOMAIN
 # Set environmental variable for storage class - to get available run: "kubectl get storageclass"
-export K8S_SC=
+K8S_SC=longhorn
 # Random it by default or set own password
-export APP_USER_PASSWD=$(openssl rand -hex 10)
+APP_USER_PASSWD=$(openssl rand -hex 10)
 
 # Default values
-export POSTGRES_HOST=lp-backend-postgresql-rw
-export RABBITMQ_HOST=lp-backend-rabbitmq
-export REDIS_HOST=lp-backend-redis
-export REDIS_APPEND_HOST=lp-backend-redis-append
-export RABBITMQ_PORT=5672
-export REDIS_PORT=6379
-export REDIS_APPEND_PORT=6379
-EOF
+POSTGRES_HOST=lp-backend-postgresql-rw
+RABBITMQ_HOST=lp-backend-rabbitmq
+REDIS_HOST=lp-backend-redis
+REDIS_APPEND_HOST=lp-backend-redis-append
+RABBITMQ_PORT=5672
+REDIS_PORT=6379
+REDIS_APPEND_PORT=6379
 
-source /tmp/ezd-vars.sh
 # ezd-pass.sh file should exists from ezd-frontend installation
 source /tmp/ezd-pass.sh
 ```
@@ -89,59 +84,73 @@ source /tmp/ezd-pass.sh
 
 ```bash
 cat <<EOF > /tmp/values.yaml
+storage:
+  storageClass: ${K8S_SC}
+domainInfo:
+  name: ${APP_DOMAIN}
+  cert_name: ezdrp-cert
+  cert_info: true
 network:
   ingressName: nginx
-cloudadmin:
-  relationaldb:
-    connectionstring:
-      archiwum: Host=${POSTGRES_HOST};Port=5432;Database=archiwum;Username=${PSQL_USER};Password=${PSQL_PASSWD}
-      ezdrp: Host=${POSTGRES_HOST};Port=5432;Database=ezdrp;Username=${PSQL_USER};Password=${PSQL_PASSWD}
-      ezdrpodczyt: Host=${POSTGRES_HOST};Port=5432;Database=ezdrp_odczyt;Username=${PSQL_USER};Password=${PSQL_PASSWD}
-      kuip: Host=${POSTGRES_HOST};Port=5432;Database=ezdrp;Username=${PSQL_USER};Password=${PSQL_PASSWD}
-    connectiontype:
-      archiwum: POSTGRESQL
-      ezdrp: POSTGRESQL
-      ezdrpodczyt: POSTGRESQL
-      kuip: POSTGRESQL
-domainInfo:
-  cert_info: true
-  cert_name: ezdrp-cert
-  name: ${APP_DOMAIN}
-email:
-  active: false
-ezdrpApi:
-  persistence:
-    storageClass: ${K8S_SC}
-filerepository:
-  persistence:
-    storageClass: ${K8S_SC}
+preparing:
+  basicAuth:
+    username: ezdrpuser
+    password: ${APP_USER_PASSWD}
+redisExt:
+  password: ${REDIS_PASSWD}
+  host: ${REDIS_HOST}
+  port: ${REDIS_PORT}
 rabbitExt:
   user: ${RABBITMQ_USER}
   password: ${RABBITMQ_PASSWD}
   host: ${RABBITMQ_HOST}
   port: ${RABBITMQ_PORT}
 redisAppendExt:
-  isCluster: false
   password: ${REDIS_PASSWD}
   host: ${REDIS_APPEND_HOST}
   port: ${REDIS_APPEND_PORT}
-redisExt:
-  isCluster: false
-  password: ${REDIS_PASSWD}
-  host: ${REDIS_HOST}
-  port: ${REDIS_PORT}
+email:
+  host: localhost
+  port: 587
+  sendermail: test@mail.loc
+  sendername: test@mail.loc
+  password: qwerty123
+  from: "EZD RP"
+ezdrpApi:
+  persistence:
+    storageClass: ${K8S_SC}
+filerepository:
+  persistence:
+    storageClass: ${K8S_SC}
+    size: 500 # Gi
 ssoIdentityServer:
   persistence:
     storageClass: ${K8S_SC}
 wpeRest:
   persistence:
     storageClass: ${K8S_SC}
+cloudadmin:
+  relationaldb:
+    connectiontype:
+      ezdrp: POSTGRESQL
+      archiwum: POSTGRESQL
+      kuip: POSTGRESQL
+      ezdrpodczyt: POSTGRESQL
+      wpa: POSTGRESQL
+      teryt: POSTGRESQL
+    connectionstring:
+      ezdrp: Host=${POSTGRES_HOST};Port=5432;Database=ezdrp;Username=${PSQL_USER};Password=${PSQL_PASSWD}
+      archiwum: Host=${POSTGRES_HOST};Port=5432;Database=archiwum;Username=${PSQL_USER};Password=${PSQL_PASSWD}
+      kuip: Host=${POSTGRES_HOST};Port=5432;Database=ezdrp;Username=${PSQL_USER};Password=${PSQL_PASSWD}
+      ezdrpodczyt: Host=${POSTGRES_HOST};Port=5432;Database=ezdrp_odczyt;Username=${PSQL_USER};Password=${PSQL_PASSWD}
+      wpe: Host=${POSTGRES_HOST};Port=5432;Database=ezdrp_odczyt;Username=${PSQL_USER};Password=${PSQL_PASSWD}
+      teryt: Host=${POSTGRES_HOST};Port=5432;Database=ezdrp;Username=${PSQL_USER};Password=${PSQL_PASSWD}
 EOF
 
-# Prepare Your TLS certificate (from previous instruction)
-cat certs/$CERTIFICATE_NAME.crt certs/ca.crt > certs/chain.crt
+# Make a secret containing TLS certificate chain
+cat ~/certs/$CERTIFICATE_NAME.crt ~/certs/ca.crt > ~/certs/chain.crt
 
-kubectl -n ${K8S_NAMESPACE} create secret tls ezdrp-cert --cert=certs/chain.crt --key=certs/$CERTIFICATE_KEY.key
+kubectl -n ${RELEASE_NAMESPACE} create secret tls ezdrp-cert --cert=certs/chain.crt --key=certs/$CERTIFICATE_KEY.key
 
 helm -n ${RELEASE_NAMESPACE} upgrade --install ezd-frontend-release \
 --repo https://hub.eadministracja.nask.pl/chartrepo/ezdrp \

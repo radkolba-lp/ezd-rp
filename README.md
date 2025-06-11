@@ -7,17 +7,18 @@ Our package contains set of necessary services which allow  to lunch EZD-RP appl
 </h1>
 
 ## Table of content
-- [Before you begin](PREREQUISITES.md)
-- [EZD RP Backends (1/2) - Operators](charts/ezd-crd/README.md)
-- [EZD RP Backends (2/2) - Apps](charts/ezd-backend/README.md)
-- [Frontend Installation](INSTALLATION.md)
-- [GUI Installation](INSTALLATION_GUI.md)
+- [Before You begin](PREREQUISITES.md)
+- [Install via CLI](#table-of-content)
+    - [Operators](charts/ezd-crd/README.md)
+    - [Backend](charts/ezd-backend/README.md)
+    - [Frontend](INSTALL_FRONTEND.md)
+- [Install via GUI ( Rancher )](INSTALL_VIA_GUI.md)
 - [Troubleshooting](TROUBLESHOOTING.md)
 
 
 ## Getting Started
 
-The best way to get started is with the  ["Before you begin"](PREREQUISITES.md), ["Installation"](INSTALLATION.md) and ["GUI Installation"](INSTALLATION_GUI.md)
+The best way to get started is with the  ["Before you begin"](PREREQUISITES.md), ["Installation"](INSTALL_FRONTEND.md) and ["GUI Installation"](INSTALL_VIA_GUI.md)
 section in the documentation.
 
 

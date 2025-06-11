@@ -51,13 +51,37 @@
 ```bash
 RELEASE_NAMESPACE=example
 CHART_VERSION=1.8.0
+# 
+cat <<EOF > /tmp/ezd-pass.sh
+# These passwords are necessary for ezdrp backend AND frontend deployments.
+# Following passwords will be a random alphanumeric by default. 
+# You can change it to Your alphanumeric password.
+
+PSQL_PASSWD=$(openssl rand -hex 10)
+PSQL_APP_PASSWD=$(openssl rand -hex 10)
+RABBITMQ_PASSWD=$(openssl rand -hex 10)
+RABBITMQ_USER=ezdrpadmin
+REDIS_PASSWD=$(openssl rand -hex 10)
+
+EOF
+source /tmp/ezd-pass.sh
 ```
 
 ### Go go helm
 
 ```bash
 cat << EOF > /tmp/values.yaml
-
+postgresqlConfig:
+  auth:
+    admPassword:  ${PSQL_PASSWD}
+    appPassword:  ${PSQL_APP_PASSWD}
+rabbitmqConfig:
+  auth:
+    password:  ${RABBITMQ_PASSWD}
+    username:  ${RABBITMQ_USER}
+redisConfig:
+  auth:
+    password:  ${REDIS_PASSWD}
 EOF 
 
 helm -n ${RELEASE_NAMESPACE} upgrade --install ezd-backend-release \
@@ -81,16 +105,5 @@ helm -n ${RELEASE_NAMESPACE} list
 helm -n ${RELEASE_NAMESPACE} uninstall ezd-backend-release
 ```
 
-## [GUI Installation](https://github.com/linuxpolska/ezd-rp/blob/main/INSTALLATION_GUI.md)
-
-1. Log in your Rancher instance.
-
-2. Go to cluster of your choice.
-
-3. Go to `Apps > Repositories` and ensure that repo https://linuxpolska.github.io/ezd-rp is `Active`.
-
-4. Go to `Apps > Charts`. Filter for EZD RP Charts.
-
-5. Select  `EZD RP Backend (1/2) - Operators`. Click on `Install` button.
-
-6. 
+## GUI Installation
+If You want to install ezd-backend via GUI, please follow [this instruction](https://github.com/linuxpolska/ezd-rp/blob/main/INSTALL_VIA_GUI.md)

@@ -21,7 +21,12 @@
 ## After Installation
 
 > **Note:**
+>
 > Copy, write down or memorize notes from helm installation output. It will be necessary for EZD RP frontend installation.
+>
+> OR
+>
+> Use `/tmp/ezd-pass.sh` file as prepared in *CLI installation - Preparation section*
 
 ## Before Upgrade
 

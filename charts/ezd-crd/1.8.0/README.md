@@ -1,83 +1,97 @@
-<!--- app-name: ezd-crd -->
-# CRDs for EZD backend Helm Chart
+## General
 
-Helm chart necessary for installtion of EZD backend chart.
-For more detailed information for EZD-CRD chart please check [README](https://github.com/linuxpolska/ezd-rp/blob/main/README.md)
+> **Note:**
+> Chart ezd-crd was tested with chart version up to 21.11.11 (application version up to 1.2025.21.11).
 
-## TL;DR
+### Are you looking for more information?
 
-```console
-helm repo add lp-ezd https://linuxpolska.github.io/ezd-rp
-helm upgrade --install --create-namespace ezd-crd -n default lp-ezd/ezd-crd
-```
+1. Based on: https://github.com/linuxpolska/ezd-rp
+2. Documentation: https://github.com/linuxpolska/ezd-rp/blob/main/README.md
+3. Chart Source: https://linuxpolska.github.io/ezd-rp
 
-## Introduction
 
-This chart bootstraps a set of operatos and CRDs on a [Kubernetes](https://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager.
+## Before Installation
 
-Linux Polska charts can be served by [Rancher Apps & Marketplace](https://ranchermanager.docs.rancher.com/pages-for-subheaders/helm-charts-in-rancher) for deployment and management of Helm Charts in clusters.
-
-## Prerequisites
+#### Prerequisites
 
 - Kubernetes 1.19+
 - Helm 3.2.0+
 - PV provisioner support in the underlying infrastructure
 
-## Installing the Chart
+## After Installation
 
-Add repository necessary for installation:
+> **Note:**
+> no action required
 
-```console
-helm repo add lp-ezd https://linuxpolska.github.io/ezd-rp
-helm repo update
+## Before Upgrade
+
+> **Note:**
+> no action required
+
+## After Upgrade
+
+> **Note:**
+> no action required
+
+
+## Tips and Tricks
+
+> **Note:**
+> List all releases using `helm list`
+
+## Known Issues
+
+> **Note:**
+> Notify us: https://github.com/linuxpolska/ezd-rp/issues
+
+  OR
+
+#### Mismatch release name or namespace for a CRD installation
+
+```
+Error: Unable to continue with install: CustomResourceDefinition "backups.postgresql.cnpg.io" in namespace "" exists and cannot be imported into the current release: invalid ownership metadata; annotation validation error: key "meta.helm.sh/release-name" must equal "ezd-crd": current value is "wrong-crd-release"; annotation validation error: key "meta.helm.sh/release-namespace" must equal "lp-system": current value is "wrong-namespace"
 ```
 
-To install the chart with the release name `my-release`:
+Release name and namespace must match for CRD upgrade. To work around the error like above, uninstall old CRDs or change release-name/namespace to matching values.
 
-```console
-helm upgrade --install --create-namespace ezd-crd -n default lp-ezd/ezd-crd
+## CLI installation
+
+### Preparation
+
+```bash
+RELEASE_NAMESPACE=lp-system
+CHART_VERSION=1.8.0
 ```
 
-The command deploys operators on the Kubernetes cluster in the default configuration. For more detailed information regarding parameters please check our [README](https://github.com/linuxpolska/ezd-rp/blob/main/README.md).
+### Go go helm
 
-> **Tip**: List all releases using `helm list`
+```bash
+cat << EOF > /tmp/values.yaml
 
-## Uninstalling the Chart
+EOF 
 
-To uninstall/delete the `my-release` deployment:
-
-```console
-helm uninstall ezd-crd
+helm -n ${RELEASE_NAMESPACE} upgrade --install ezd-crd \
+--repo https://linuxpolska.github.io/ezd-rp \
+ezd-crd \
+-f /tmp/values.yaml \
+--version ${CHART_VERSION} \
+--create-namespace
 ```
 
-The command removes all the Kubernetes components but no CRDs
+### Validation and Testing
 
-To delete the CRDs  associated with `my-release`:
+```bash
+kubectl -n ${RELEASE_NAMESPACE} get po
+helm -n ${RELEASE_NAMESPACE} list
+```
 
-```console
+## CLI removing
 
-kubectl get crd -o name | grep -E "(postgresql.cnpg.io|rabbitmqclusters.rabbitmq.com)" | xargs kubectl delete 
-
+```bash
+helm -n ${RELEASE_NAMESPACE} uninstall ezd-crd
+kubectl get crd -o name | grep -E "(postgresql.cnpg.io|rabbitmqclusters.rabbitmq.com|redis.opstreelabs.in)" | xargs kubectl delete
 ```
 
 > **Note**: Deleting the CRDs will delete all data as well. Please be cautious before doing it.
 
-For more detailed information regarding installation of ezd-crd please refer to [INSTALLATION](https://github.com/linuxpolska/ezd-rp/blob/main/INSTALLATION.md)
-
-## Compability with NASK ezdrp version
-
-Chart ezd-crd was tested with chart version up to 21.7.29 (application version up to 1.2025.21.7).
-
-## Configuration and parameters
-
-See [Customizing the Chart Before Installing](https://helm.sh/docs/intro/using_helm/#customizing-the-chart-before-installing). To see all configurable options with detailed comments:
-
-```console
-helm search repo lp-ezd
-helm show values lp-ezd/ezd-crd
-```
-
-## Components version
-- cloudnative-pg: 0.23.2
-- rabbitmq-cluster-operator: 4.4.11
-- redis-operator: 0.20.1
+## [GUI Installation](https://github.com/linuxpolska/ezd-rp/blob/main/INSTALLATION_GUI.md)

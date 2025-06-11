@@ -112,6 +112,17 @@ Press install when customization is finished.
 ![lp_crd_4](docs/images/lp_crd_4.png)
 
 ## EZDRP BACKEND-DB
+<!-- 1. Log in your Rancher instance.
+
+2. Go to cluster of your choice.
+
+3. Go to `Apps > Repositories` and ensure that repo https://linuxpolska.github.io/ezd-rp is `Active`.
+
+4. Go to `Apps > Charts`. Filter for EZD RP Charts.
+
+5. Select  `EZD RP Backend (1/2) - Operators`. Click on `Install` button.
+
+6.  -->
 
 1. Choose from lef-hand side menu Apps/Charts like on below screen:
 

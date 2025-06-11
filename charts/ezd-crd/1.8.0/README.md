@@ -68,7 +68,7 @@ CHART_VERSION=1.8.0
 ```bash
 cat << EOF > /tmp/values.yaml
 
-EOF 
+EOF
 
 helm -n ${RELEASE_NAMESPACE} upgrade --install ezd-crd \
 --repo https://linuxpolska.github.io/ezd-rp \

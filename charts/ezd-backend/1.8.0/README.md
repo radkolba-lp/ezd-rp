@@ -56,10 +56,10 @@
 ```bash
 RELEASE_NAMESPACE=example
 CHART_VERSION=1.8.0
-# 
+#
 cat <<EOF > /tmp/ezd-pass.sh
 # These passwords are necessary for ezdrp backend AND frontend deployments.
-# Following passwords will be a random alphanumeric by default. 
+# Following passwords will be a random alphanumeric by default.
 # You can change it to Your alphanumeric password.
 
 PSQL_PASSWD=$(openssl rand -hex 10)
@@ -87,7 +87,7 @@ rabbitmqConfig:
 redisConfig:
   auth:
     password:  ${REDIS_PASSWD}
-EOF 
+EOF
 
 helm -n ${RELEASE_NAMESPACE} upgrade --install ezd-backend-release \
 --repo https://linuxpolska.github.io/ezd-rp \

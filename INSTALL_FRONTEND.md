@@ -67,17 +67,17 @@ K8S_SC=longhorn
 # Random it by default or set own password
 APP_USER_PASSWD=$(openssl rand -hex 10)
 
+# ezd-pass.sh file should exists from ezd-backend installation
+source /tmp/ezd-pass.sh
+
 # Default values
-POSTGRES_HOST=lp-backend-postgresql-rw
-RABBITMQ_HOST=lp-backend-rabbitmq
-REDIS_HOST=lp-backend-redis
-REDIS_APPEND_HOST=lp-backend-redis-append
+POSTGRES_HOST=lp-backend-postgresql-rw.${BACKEND_NAMESPACE}.svc
+RABBITMQ_HOST=lp-backend-rabbitmq.${BACKEND_NAMESPACE}.svc
+REDIS_HOST=lp-backend-redis.${BACKEND_NAMESPACE}.svc
+REDIS_APPEND_HOST=lp-backend-redis-append.${BACKEND_NAMESPACE}.svc
 RABBITMQ_PORT=5672
 REDIS_PORT=6379
 REDIS_APPEND_PORT=6379
-
-# ezd-pass.sh file should exists from ezd-frontend installation
-source /tmp/ezd-pass.sh
 ```
 
 ### Go go helm

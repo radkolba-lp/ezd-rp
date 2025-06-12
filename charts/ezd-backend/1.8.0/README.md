@@ -56,7 +56,7 @@
 ```bash
 RELEASE_NAMESPACE=example
 CHART_VERSION=1.8.0
-#
+
 cat <<EOF > /tmp/ezd-pass.sh
 # These passwords are necessary for ezdrp backend AND frontend deployments.
 # Following passwords will be a random alphanumeric by default.
@@ -68,6 +68,7 @@ RABBITMQ_PASSWD=$(openssl rand -hex 10)
 RABBITMQ_USER=ezdrpadmin
 REDIS_PASSWD=$(openssl rand -hex 10)
 
+BACKEND_NAMESPACE=$RELEASE_NAMESPACE
 EOF
 source /tmp/ezd-pass.sh
 ```

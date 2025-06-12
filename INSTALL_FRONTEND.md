@@ -69,6 +69,9 @@ K8S_SC=longhorn
 # Random it by default or set own password
 APP_USER_PASSWD=$(openssl rand -hex 10)
 
+# Username for postgres from EZD RP Backend
+PSQL_USER=postgres
+
 # ezd-pass.sh file should exists from ezd-backend installation
 source /tmp/ezd-pass.sh
 

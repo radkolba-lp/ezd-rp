@@ -56,12 +56,14 @@
 
 ```bash
 RELEASE_NAMESPACE=example
-CHART_VERSION=1.8.0
+CHART_VERSION=21.11.11
 
 # Set the name of the domain where ezdrp will exist
 APP_DOMAIN=example.domain.name
 # Set the TLS certificate filename which will be pulled into tls secret
 CERTIFICATE_NAME=$APP_DOMAIN
+# Path to direcrory where TLS key and certs are stored
+CERTS_PATH=~/certs
 # Set environmental variable for storage class - to get available run: "kubectl get storageclass"
 K8S_SC=longhorn
 # Random it by default or set own password
@@ -150,7 +152,7 @@ EOF
 # Make a secret containing TLS certificate chain
 cat ~/certs/$CERTIFICATE_NAME.crt ~/certs/ca.crt > ~/certs/chain.crt
 
-kubectl -n ${RELEASE_NAMESPACE} create secret tls ezdrp-cert --cert=certs/chain.crt --key=certs/$CERTIFICATE_KEY.key
+kubectl -n ${RELEASE_NAMESPACE} create secret tls ezdrp-cert --cert=$CERTS_PATH/chain.crt --key=$CERTS_PATH/$CERTIFICATE_NAME.key
 
 helm -n ${RELEASE_NAMESPACE} upgrade --install ezd-frontend-release \
 --repo https://hub.eadministracja.nask.pl/chartrepo/ezdrp \

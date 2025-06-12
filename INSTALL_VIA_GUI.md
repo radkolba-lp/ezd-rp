@@ -1,8 +1,6 @@
 # USER GUIDE FOR EZDRP LINUXPOLSKA
 
 # Table of Contents
-* [USER GUIDE FOR EZDRP LINUXPOLSKA](#user-guide-for-ezdrp-linuxpolska)
-* [Table of Contents](#table-of-contents)
 * [Prerequisites](#prerequisites)
    * [K8S platform -Rancher](#k8s-platform--rancher)
    * [Create project in rancher.](#create-project-in-rancher)
@@ -41,13 +39,13 @@
 
 4. When everything will be ready press create.
 
-## Create work space in rancher.
+## Create namespace space in rancher.
 
 1. This can be done by pressing create:
 
 ![namespace_1](docs/images/namespace_1.png)
 
-2. Please fill in a name field for instance `ezd-rp`all:
+2. Please fill in a name field for instance `ezd-rp`:
 
 ![namespace_2](docs/images/namespace_2.png)
 ![namespace_3](docs/images/namespace_3.png)
@@ -81,15 +79,13 @@ In this case please add following repositories:
 
 ## EZDRP CRDs and operators (install once per cluster)
 
-1. Choose from lef-hand side menu Apps/Charts like on below screen:
-
-![menu_apps](docs/images/menu_apps.png)
+1. Choose from left side menu Apps/Charts like on below screen:
 
 You will be provided with Charts(please use filters to pick linuxpolska EZD RP, and EZD to choose NASK application)
 
-2. Choose `CRDs for LP Backend` chart.
+2. Choose `EZD RP Backend (1/2) - Operators` chart.
 
-![apps_chart](docs/images/chart_backend.png)
+![apps_chart](docs/images/chart_crd.png)
 
 3. On next screen you will get instructions regarding requirments and instruction how to manually install and uninstall chart(Chart Info). Components version and requirments:
 
@@ -112,21 +108,8 @@ Press install when customization is finished.
 ![lp_crd_4](docs/images/lp_crd_4.png)
 
 ## EZDRP BACKEND-DB
-<!-- 1. Log in your Rancher instance.
-
-2. Go to cluster of your choice.
-
-3. Go to `Apps > Repositories` and ensure that repo https://linuxpolska.github.io/ezd-rp is `Active`.
-
-4. Go to `Apps > Charts`. Filter for EZD RP Charts.
-
-5. Select  `EZD RP Backend (1/2) - Operators`. Click on `Install` button.
-
-6.  -->
 
 1. Choose from lef-hand side menu Apps/Charts like on below screen:
-
-![menu_apps](docs/images/menu_apps.png)
 
 You will be provided with Charts(please use filters to pick linuxpolska EZD RP, and EZD to choose NASK application)
 
@@ -140,7 +123,7 @@ You will be provided with Charts(please use filters to pick linuxpolska EZD RP, 
 
 Press install to proceed.
 
-4. Next screen is allowing you to choose desired namespace and it is giving you option to customize helm options before installation. . Please select `ezd-rp` namespace:
+4. Next screen is allowing you to choose desired namespace and it is giving you option to customize helm options before installation.
 
 ![lp_backend_1](docs/images/lp_backend_1.png)
 
@@ -154,12 +137,6 @@ Press install to proceed.
 ![lp_backend_3_2](docs/images/lp_backend_3.2.png)
 ![lp_backend_3_3](docs/images/lp_backend_3.3.png)
 ![lp_backend_3_4](docs/images/lp_backend_3.4.png)
-
-and press next.
-
-7. Last screen before start of installation will contain additional deployment options:
-
-![lp_backend_4](docs/images/lp_backend_4.png)
 
 Press install.
 

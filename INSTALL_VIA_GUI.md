@@ -149,8 +149,6 @@ Press install.
 
 1. Choose from lef-hand side menu Apps/Charts like on below screen:
 
-![apps_chart](docs/images/menu_apps.png)
-
 You will be provided with Charts(please use filters to pick linuxpolska EZD RP, and EZD to choose NASK application)
 
 2. Choose nask-ezdrp-ha.

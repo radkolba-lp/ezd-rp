@@ -155,7 +155,7 @@ You will be provided with Charts(please use filters to pick linuxpolska EZD RP, 
 
 2. Choose nask-ezdrp-ha.
 
-![apps_chart](docs/images/chart_crd.png)
+![apps_chart](docs/images/chart_frontend.png)
 
 3. On next screen you will get instructions regarding requirments and information regarding chart(Chart Info).
 
@@ -172,19 +172,16 @@ Press install.
 
 ![nask_installation_2](docs/images/nask_installation_2.png)
 ![nask_installation_3](docs/images/nask_installation_3.png)
+![nask_installation_4](docs/images/nask_installation_4.1.png)
 ![nask_installation_4](docs/images/nask_installation_4.png)
 ![nask_installation_5](docs/images/nask_installation_5.png)
+![nask_installation_5](docs/images/nask_installation_5.1.png)
 ![nask_installation_6](docs/images/nask_installation_6.png)
+![nask_installation_6](docs/images/nask_installation_6.1.png)
 ![nask_installation_7](docs/images/nask_installation_7.png)
-
-Press next.
-
-6. Last screen before start of installation will contain additional deployment options:
-
+![nask_installation_7](docs/images/nask_installation_7.1.png)
 ![nask_installation_8](docs/images/nask_installation_8.png)
 
-7. Press install at the bottom left side 
-
-![crd_4](docs/images/crd_installation_4.png)
+7. Press install.
 
 8. After when deployment will be completed you will be provided with website URL that you can access to start using NASK EZD-RP application.

@@ -218,3 +218,5 @@ Press **next**.
 7. Press **install**.
 
 8. After when deployment will be completed you will be provided with website URL that you can access to start using NASK EZD-RP application.
+
+![nask_installation_9](docs/images/nask_installation_9.png)

@@ -7,8 +7,8 @@ Copy it and configure EZDRP app.
 
 Database configuration:
                            Select database type: POSTGRESQL
-                   External DB connectionstring: Host={{ include "ezd-backend.postgresqlConfig.fullname" . }}-rw;Port=5432;Database=ezdrp;Username={{ default ( "postgres" ) }};Password='{{ include "ezd-backend.password" .Values.postgresqlConfig.auth.admPassword }}'
-              Select ARCHIWUM database type: POSTGRESQL
+                   External DB connectionstring: Host={{ include "ezd-backend.postgresqlConfig.fullname" . }}-rw.{{ .Release.Namespace }}.svc;Port=5432;Database=ezdrp;Username={{ default ( "postgres" ) }};Password='{{ include "ezd-backend.password" .Values.postgresqlConfig.auth.admPassword }}'
+                  Select ARCHIWUM database type: POSTGRESQL
                    External DB connectionstring: Host={{ include "ezd-backend.postgresqlConfig.fullname" . }}-rw.{{ .Release.Namespace }}.svc;Port=5432;Database=archiwum;Username={{ default ( "postgres" ) }};Password='{{ include "ezd-backend.password" .Values.postgresqlConfig.auth.admPassword }}'
                       Select KUIP database type: POSTGRESQL
                    External DB connectionstring: Host={{ include "ezd-backend.postgresqlConfig.fullname" . }}-rw.{{ .Release.Namespace }}.svc;Port=5432;Database=ezdrp;Username={{ default ( "postgres" ) }};Password='{{ include "ezd-backend.password" .Values.postgresqlConfig.auth.admPassword }}'

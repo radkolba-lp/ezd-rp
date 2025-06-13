@@ -18,9 +18,9 @@ Our package contains set of necessary services which allow  to lunch EZD-RP appl
 
 ## Getting Started
 
-The best way to get started is with the  ["Before you begin"](PREREQUISITES.md), ["Installation"](INSTALL_FRONTEND.md) and ["GUI Installation"](INSTALL_VIA_GUI.md)
-section in the documentation.
+The best way to get started is with the  ["Before you begin"](PREREQUISITES.md). 
 
+After that, choose instalation way from the following: ["GUI Installation"](INSTALL_VIA_GUI.md) or CLI Installation ([Operators](charts/ezd-crd/README.md), [Backend](charts/ezd-backend/README.md), [Frontend](INSTALL_FRONTEND.md))
 
 ## Releases
 | Release / Chart Version | Release Notes                                                   |  Tested with NASK Ezdrp application                                |

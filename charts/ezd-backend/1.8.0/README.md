@@ -112,4 +112,4 @@ helm -n ${RELEASE_NAMESPACE} uninstall ezd-backend-release
 ```
 
 ## GUI Installation
-If You want to install ezd-backend via GUI, please follow [this instruction](https://github.com/linuxpolska/ezd-rp/blob/main/INSTALL_VIA_GUI.md)
+If You want to install ezd-backend via GUI, please follow [this instruction](https://github.com/linuxpolska/ezd-rp/blob/main/INSTALL_VIA_GUI.md).

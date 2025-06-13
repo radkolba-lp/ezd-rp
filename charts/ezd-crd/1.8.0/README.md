@@ -44,8 +44,6 @@
 > **Note:**
 > Notify us: https://github.com/linuxpolska/ezd-rp/issues
 
-  OR
-
 #### Mismatch release name or namespace for a CRD installation
 
 ```
@@ -95,4 +93,4 @@ kubectl get crd -o name | grep -E "(postgresql.cnpg.io|rabbitmqclusters.rabbitmq
 > **Note**: Deleting the CRDs will delete all data as well. Please be cautious before doing it.
 
 ## GUI Installation
-If You want to install ezd-crd via GUI, please follow [this instruction](https://github.com/linuxpolska/ezd-rp/blob/main/INSTALL_VIA_GUI.md)
+If You want to install ezd-crd via GUI, please follow [this instruction](https://github.com/linuxpolska/ezd-rp/blob/main/INSTALL_VIA_GUI.md).

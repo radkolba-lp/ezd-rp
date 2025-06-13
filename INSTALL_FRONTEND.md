@@ -9,11 +9,12 @@
 ## Before Installation
 
 > **Note:**
+>
 > Use notes from ezd-backend helm installation output.
 >
 > OR
 >
-> Use file /tmp/ezd-pass.sh created in ezd-backend helm installation for CLI.
+> Use file `/tmp/ezd-pass.sh` created in ezd-backend helm installation for CLI.
 
 #### Prerequisites
 
@@ -179,4 +180,4 @@ helm -n ${RELEASE_NAMESPACE} uninstall ezd-frontend-release
 ```
 
 ## GUI Installation
-If You want to install ezd-frontend via GUI, please follow [this instruction](../../../INSTALL_VIA_GUI.md).
+If You want to install ezd-frontend via GUI, please follow [this instruction](https://github.com/linuxpolska/ezd-rp/blob/main/INSTALL_VIA_GUI.md).

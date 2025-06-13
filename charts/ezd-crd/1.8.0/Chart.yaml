@@ -28,6 +28,11 @@ keywords:
 - ezd-rp
 - backend
 - databases
+- redis
+- postgres
+- rabbitmq
+- operators
+- crd
 kubeVersion: '>=1.19.0-0'
 maintainers:
 - email: biuro@linuxpolska.com

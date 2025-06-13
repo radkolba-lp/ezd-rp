@@ -8,7 +8,14 @@ description: Services necessary to run EZD RP app. Install many times on kuberne
 home: https://linuxpolska.com
 icon: https://linuxpolska.com/logo/LinuxPolska-icon.png
 keywords:
-- config
+- ezd
+- ezdrp
+- ezd-rp
+- backend
+- databases
+- redis
+- postgres
+- rabbitmq
 kubeVersion: '>=1.19.0-0'
 maintainers:
 - email: biuro@linuxpolska.com
